@@ -4,3 +4,5 @@
 
 .empty 为占位用
 .sh脚本需要转unix
+
+设置slaveok
