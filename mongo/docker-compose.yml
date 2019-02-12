@@ -1,34 +1,33 @@
 version: '3.1'
 services:
   rs0-mongo0:
-    image: "mongo-start"
-    build: ./rs0-mongo0
+    image: "my-mongo"
+    build: ./my-mongo
     container_name: rs0-mongo0
     ports:
       - 27017:27017
     volumes:
-      - ./rs0-mongo0/data:/data/db
-    depends_on:
-      - "rs0-mongo1"
-      - "rs0-mongo2"
+      - ./data/m0:/data/db
   rs0-mongo1:
-    image: mongo
-    command: --replSet rs0
+    image: "my-mongo"
+    build: ./my-mongo
     container_name: rs0-mongo1
     ports:
       - 27018:27017
     volumes:
-      - ./rs0-mongo1/data:/data/db
+      - ./data/m1:/data/db
   rs0-mongo2:
-    image: mongo
-    command: --replSet rs0
+    image: "my-mongo"
+    build: ./my-mongo
     container_name: rs0-mongo2
     ports:
       - 27019:27017
     volumes:
-      - ./rs0-mongo2/data:/data/db
+      - ./data/m2:/data/db
   setup-rs:
     image: "setup-rs"
     build: ./setup
     depends_on:
       - "rs0-mongo0"
+      - "rs0-mongo1"
+      - "rs0-mongo2"
