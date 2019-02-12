@@ -3,7 +3,7 @@ services:
   rs0-mongo0:
     image: "mongo-start"
     build: ./rs0-mongo0
-    container_name: mongo0
+    container_name: rs0-mongo0
     ports:
       - 27017:27017
     volumes:
@@ -14,7 +14,7 @@ services:
   rs0-mongo1:
     image: mongo
     command: --replSet rs0
-    container_name: mongo1
+    container_name: rs0-mongo1
     ports:
       - 27018:27017
     volumes:
@@ -22,7 +22,7 @@ services:
   rs0-mongo2:
     image: mongo
     command: --replSet rs0
-    container_name: mongo2
+    container_name: rs0-mongo2
     ports:
       - 27019:27017
     volumes:
